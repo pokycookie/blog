@@ -1,0 +1,22 @@
+@layer base {
+  .prose :where(code):not(:where([class~='not-prose'] *)) {
+    @apply bg-red-100 text-red-400! px-1 py-0.5 rounded font-medium;
+
+    /* Remove before and after backticks */
+    &::before,
+    &::after {
+      content: none !important;
+    }
+  }
+
+  /* Dark mode */
+  .prose.dark :where(code):not(:where([class~='not-prose'] *)),
+  .dark .prose :where(code):not(:where([class~='not-prose'] *)) {
+    @apply bg-red-950/30 text-red-400;
+  }
+
+  /* Exclude code inside code block */
+  .prose :where(pre code):not(:where([class~='not-prose'] *)) {
+    @apply bg-transparent text-inherit p-0;
+  }
+}
