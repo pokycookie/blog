@@ -9,6 +9,7 @@ type PostListProps = {
   posts: CollectionEntry<'posts'>[]
   categories: string[]
   currentCategory: string | null
+  baseUrl: string
 }
 
 export function PostList({
@@ -17,6 +18,7 @@ export function PostList({
   posts,
   categories,
   currentCategory,
+  baseUrl,
 }: PostListProps) {
   return (
     <main className="flex flex-col items-center w-full gap-8">
@@ -40,7 +42,7 @@ export function PostList({
           ))}
         </ul>
       </section>
-      <Pagination currentPage={currentPage} lastPage={lastPage} baseUrl="" />
+      <Pagination currentPage={currentPage} lastPage={lastPage} baseUrl={baseUrl} />
     </main>
   )
 }
