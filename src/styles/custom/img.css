@@ -1,0 +1,5 @@
+@layer base {
+  .prose img {
+    @apply w-full h-auto rounded-lg bg-cover;
+  }
+}
