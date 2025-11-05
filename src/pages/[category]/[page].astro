@@ -1,0 +1,50 @@
+---
+import { PostList } from '@/components/post-list'
+import RootLayout from '@/layout/root-layout.astro'
+import type { GetStaticPaths } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+import _ from 'lodash'
+
+const collections = await getCollection('posts')
+const categories = _.uniq(
+  collections
+    .map((collection) => collection.id.split('/')[0])
+    .filter((category) => !category.endsWith('.md'))
+)
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const collections = await getCollection('posts')
+
+  const categoryGroup: Record<string, CollectionEntry<'posts'>[]> = {}
+  for (const post of collections) {
+    const category = post.id.split('/')[0]
+    if (category.endsWith('.md')) continue
+    if (!categoryGroup[category]) categoryGroup[category] = []
+    categoryGroup[category].push(post)
+  }
+
+  return Object.entries(categoryGroup).flatMap(([category, posts]) => {
+    const sortedPosts = posts
+      .sort((a, b) => new Date(b.data.createdAt).getTime() - new Date(a.data.createdAt).getTime())
+      .filter((post) => post.data.published)
+
+    return paginate(sortedPosts, { pageSize: 10, params: { category } })
+  })
+}) satisfies GetStaticPaths
+
+const { category } = Astro.params
+const { page } = Astro.props
+const posts = page.data
+---
+
+<RootLayout>
+  <PostList
+    currentPage={page.currentPage}
+    lastPage={page.lastPage}
+    posts={posts}
+    categories={categories}
+    currentCategory={category ?? null}
+    baseUrl={`/${category}`}
+  />
+</RootLayout>

@@ -6,6 +6,7 @@
 /* Custom styles */
 @import './custom/inline-code.css';
 @import './custom/img.css';
+@import './custom/strong.css';
 
 @custom-variant dark (&:is(.dark *));
 
