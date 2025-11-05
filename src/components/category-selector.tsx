@@ -22,7 +22,7 @@ export function CategorySelector({
         <CategoryButton
           key={category}
           isActive={category === currentCategory}
-          href={url(`/${category}/1`)}
+          href={`/${category}/1`}
         >
           {category.toUpperCase()}
         </CategoryButton>
