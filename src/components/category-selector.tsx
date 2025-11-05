@@ -15,7 +15,7 @@ export function CategorySelector({
 }: CategorySelectorProps) {
   return (
     <div className={cn('flex gap-2 w-full bg-background p-4 border-b border-muted', className)}>
-      <CategoryButton isActive={currentCategory === null} href={url('/1')}>
+      <CategoryButton isActive={currentCategory === null} href={'/1'}>
         전체
       </CategoryButton>
       {categories.map((category) => (
