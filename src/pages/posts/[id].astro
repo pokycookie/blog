@@ -1,6 +1,9 @@
 ---
-import RootLayout from '@/layout/root-layout.astro'
 import { getCollection } from 'astro:content'
+
+import { Frontmatter } from '@/components/frontmatter'
+import RootLayout from '@/layout/root-layout.astro'
+import { PostBreadcrumb } from '@/components/post-breadcrumb'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
@@ -17,8 +20,12 @@ const { Content } = await post.render()
 
 <RootLayout>
   <main class="flex flex-col items-center px-4 py-8">
+    <section class="flex flex-col gap-4 mb-8 w-full max-w-xl">
+      <h1 class="text-3xl font-black">{post.data.title}</h1>
+      <PostBreadcrumb slug={post.slug} />
+      <Frontmatter {...post.data} />
+    </section>
     <article class="prose prose-sm">
-      <h1>{post.data.title}</h1>
       <Content />
     </article>
   </main>
