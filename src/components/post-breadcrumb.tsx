@@ -7,6 +7,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from './ui/breadcrumb'
+import { url } from '@/lib/utils'
 
 type CategoryBreadcrumbProps = {
   slug: string
@@ -19,14 +20,14 @@ export function PostBreadcrumb({ slug }: CategoryBreadcrumbProps) {
     <Breadcrumb>
       <BreadcrumbList className="gap-1 sm:gap-1">
         <BreadcrumbItem>
-          <BreadcrumbLink href="/1">블로그</BreadcrumbLink>
+          <BreadcrumbLink href={url('/1')}>블로그</BreadcrumbLink>
         </BreadcrumbItem>
         {categories.map((category, i) => (
           <Fragment key={i}>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               {i == 0 ? (
-                <BreadcrumbLink href={`/${category}/1`}>{category}</BreadcrumbLink>
+                <BreadcrumbLink href={url(`/${category}/1`)}>{category}</BreadcrumbLink>
               ) : (
                 <BreadcrumbPage>{category}</BreadcrumbPage>
               )}

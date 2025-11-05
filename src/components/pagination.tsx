@@ -7,6 +7,7 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination'
 import _ from 'lodash'
+import { url } from '@/lib/utils'
 
 const VISIBLE_PAGES = 5
 
@@ -26,13 +27,13 @@ export function Pagination({ currentPage, lastPage, baseUrl }: PaginationProps) 
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
-            href={currentPage > 1 ? `${baseUrl}/${currentPage - 1}` : undefined}
+            href={currentPage > 1 ? url(`${baseUrl}/${currentPage - 1}`) : undefined}
           />
         </PaginationItem>
 
         {pages.map((page) => (
           <PaginationItem>
-            <PaginationLink href={`${baseUrl}/${page}`} isActive={page === currentPage}>
+            <PaginationLink href={url(`${baseUrl}/${page}`)} isActive={page === currentPage}>
               {page}
             </PaginationLink>
           </PaginationItem>
@@ -40,7 +41,7 @@ export function Pagination({ currentPage, lastPage, baseUrl }: PaginationProps) 
 
         <PaginationItem>
           <PaginationNext
-            href={currentPage < lastPage ? `${baseUrl}/${currentPage + 1}` : undefined}
+            href={currentPage < lastPage ? url(`${baseUrl}/${currentPage + 1}`) : undefined}
           />
         </PaginationItem>
       </PaginationContent>
