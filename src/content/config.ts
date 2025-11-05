@@ -9,6 +9,9 @@ const postsCollection = defineCollection({
     updatedAt: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
     published: z.boolean().default(false),
+    deprecated: z.boolean().default(false),
+    isNotice: z.boolean().default(false),
+    cover: z.string().optional(),
   }),
 })
 

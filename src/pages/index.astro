@@ -1,7 +1,32 @@
 ---
 import Layout from '@/layout/layout.astro'
+import { getCollection } from 'astro:content'
+
+import { PostCard } from '@/components/post-card'
+
+const collections = await getCollection('posts')
+
+const posts = collections
+  .sort((a, b) => new Date(b.data.createdAt).getTime() - new Date(a.data.createdAt).getTime())
+  .filter((post) => post.data.published)
 ---
 
 <Layout>
-  <h1>Astro</h1>
+  <section class="w-full flex flex-col items-center">
+    <ul class="flex flex-col gap-2 max-w-2xl">
+      {
+        posts.map((post) => (
+          <PostCard
+            id={post.data.id}
+            title={post.data.title}
+            createdAt={post.data.createdAt}
+            tags={post.data.tags}
+            isNotice={post.data.isNotice}
+            cover={post.data.cover}
+            category={post.slug}
+          />
+        ))
+      }
+    </ul>
+  </section>
 </Layout>
