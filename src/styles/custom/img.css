@@ -1,5 +1,5 @@
 @layer base {
-  .prose img {
+  .prose :where(img):not(:where([class~='not-prose'] *)) {
     @apply w-full h-auto rounded-lg bg-cover;
   }
 }

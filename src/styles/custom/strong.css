@@ -1,0 +1,5 @@
+@layer base {
+  .prose :where(strong):not(:where([class~='not-prose'] *)) {
+    @apply font-extrabold text-red-500!;
+  }
+}
