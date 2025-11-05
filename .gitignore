@@ -25,4 +25,6 @@ pnpm-debug.log*
 
 # blog content
 src/content/*
+!src/content/posts/
+src/content/posts/*
 !src/content/posts/.gitkeep
