@@ -8,7 +8,7 @@ const postsCollection = defineCollection({
     createdAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
-    published: z.boolean().default(false),
+    published: z.boolean().default(true),
     deprecated: z.boolean().default(false),
     isNotice: z.boolean().default(false),
     cover: z.string().optional(),

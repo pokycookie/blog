@@ -9,6 +9,7 @@ import {
 import { DotIcon } from 'lucide-react'
 import { Fragment } from 'react/jsx-runtime'
 import { Badge } from './ui/badge'
+import { url } from '@/lib/utils'
 
 type PostCardProps = {
   id: number
@@ -23,7 +24,7 @@ type PostCardProps = {
 export function PostCard({ id, title, createdAt, tags, isNotice, cover, category }: PostCardProps) {
   return (
     <li className="group cursor-pointer w-full px-2 py-4">
-      <a href={`/posts/${id}`} className="flex gap-8">
+      <a href={url(`/posts/${id}`)} className="flex gap-8">
         <section className="flex flex-col flex-1 gap-2 justify-between">
           <div className="flex flex-col gap-2">
             <h2 className="text-lg font-bold group-hover:text-blue-500 transition-colors">

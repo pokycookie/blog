@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn, url } from '@/lib/utils'
 import { Button } from './ui/button'
 import type { ReactNode } from 'react'
 
@@ -15,7 +15,7 @@ export function CategorySelector({
 }: CategorySelectorProps) {
   return (
     <div className={cn('flex gap-2 w-full bg-background p-4 border-b border-muted', className)}>
-      <CategoryButton isActive={currentCategory === null} href="/1">
+      <CategoryButton isActive={currentCategory === null} href={'/1'}>
         전체
       </CategoryButton>
       {categories.map((category) => (
@@ -39,7 +39,7 @@ type CategoryButtonProps = {
 
 function CategoryButton({ children, isActive, href }: CategoryButtonProps) {
   return (
-    <a href={href}>
+    <a href={url(href)}>
       <Button variant="ghost" className={cn(isActive && 'bg-accent', 'cursor-pointer')}>
         {children}
       </Button>

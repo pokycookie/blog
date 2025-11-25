@@ -29,8 +29,9 @@ export function PostList({
       />
       <section className="w-full flex flex-col items-center">
         <ul className="flex flex-col gap-2 max-w-2xl w-full">
-          {posts.map((post) => (
+          {posts.map((post, i) => (
             <PostCard
+              key={i}
               id={post.data.id}
               title={post.data.title}
               createdAt={post.data.createdAt}
